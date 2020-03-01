@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'extendflix/css/bootstrap.min.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'extendflix/css/starter-template.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'extendflix/style.css' %}" type="text/css">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {% block head %}
+            <title>Base</title>
+        {% endblock %}
+    </head>
+
+    <body class="text-center" style="box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0)">
+        <div class="container" style="box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0)">
+            <div class="cover-container d-flex w-100 h-17 p-3 mx-auto flex-column">
+                <header class="masthead mb-auto">
+                    <div class="inner">
+                        <h3 class="masthead-brand">Extendflix</h3>
+                        <nav class="nav nav-masthead justify-content-center">
+                        <a class="nav-link active" href="/">Home</a>
+                        {% if user.is_authenticated %}
+                            <a class="nav-link active" href="/account/profile">My Profile</a>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                            <a class="nav-link active" href="accounts/logout/">Logout</a>
+                        {% else %}
+                            <a class="nav-link active" href="/accounts/login/">Login</a>
+                            <a class="nav-link active" href="/register">Register</a>
+                        {% endif %}
+                        </nav>
+                    </div>
+                </header>
+            </div>
+
+            <script src={% static 'extendflix/js/jquery-3.3.1.min.js' %}></script>
+            <script src={% static 'extendflix/js/bootstrap.min.js' %}></script>
+            <script src={% static 'extendflix/js/popper.min.js' %}></script>
+
+
+            <main class="inner cover">
+                {% block body %}
+                        <h1>Base</h1>
+                {% endblock %}
+            </main>
+
+            <div >
+                <footer class="mastfoot mt-auto">
+                    <div class="inner">
+                        <p> Netflix Mashup Service for advanced ratings</p>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </body>
+</html>
