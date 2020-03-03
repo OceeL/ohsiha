@@ -5,6 +5,9 @@ from django.contrib.auth import authenticate, login
 # Create your views here.
 
 def index(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+
     return render(request, 'extendflix/index.html')
 
 def register(request):
