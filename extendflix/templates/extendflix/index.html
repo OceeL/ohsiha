@@ -5,6 +5,20 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Home</h1>
-    <a href="/logout/">Testi logout</a>
+    <div class="jumbotron-fluid">
+        <h1>Home</h1>
+        <h2>Welcome</h2>
+    </div>
+    <div>
+        <div class="row">
+            {% for movie_data in movies_data %}
+            <div class="card card col-xs-12 col-md-6 homepage-card">
+                <p>
+                    {{ movie_data.movie_name }}
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
 {% endblock %}
