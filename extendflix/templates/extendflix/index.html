@@ -5,17 +5,47 @@
 {% endblock %}
 
 {% block body %}
-    <div class="jumbotron-fluid">
-        <h1>Home</h1>
-        <h2>Welcome</h2>
+    <div class="jumbotron-fluid" style="margin-top: 40px">
+        <h3>Here you can see all the latest new Netflix movies and their ratings</h3>
+    </div>
+    <div style="margin-bottom: 40px">
+    
     </div>
     <div>
         <div class="row">
             {% for movie_data in movies_data %}
-            <div class="card card col-xs-12 col-md-6 homepage-card">
-                <p>
-                    {{ movie_data.movie_name }}
-                </p>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12 homepage-card">
+                <div class="card border-secondary md-4 shadow-sm bg-dark">
+                        <div class="card-img-top">
+                            <img src="{{ movie_data.movie_image }}" width="100%">
+                        </div>
+                    <div class="card-body bg-secondary">
+                        <h5 class="card-title">{{ movie_data.movie_name }}</h5>
+                        <p style="margin-bottom: 0"><b>Release year:</b> {{ movie_data.movie_released }}</p>
+                        <p><b>Run time:</b> {{ movie_data.movie_runtime }}</p>
+                        <div class="card bg-dark">
+                           <div class="card-header">
+                               <p style="color: #D81F26; margin-bottom: 0"><b>Ratings:</b></p>
+                           </div>
+                           <ul class="list-group list-group-flush bg-dark">
+                               <li class="list-group-item bg-dark "><b>IMDB:</b> <p style="color: #D81F26; margin-bottom: 0"> {{ movie_data.movie_imdb_rating }}</p></li>
+                               <li class="list-group-item bg-dark"><b>Rotten Tomatoes:</b> <p style="color: #D81F26; margin-bottom: 0"> {{ movie_data.movie_rotten_tomatoes_rating }}</p></li>
+                               <li class="list-group-item bg-dark"><b>MetaCritic:</b> <p style="color: #D81F26; margin-bottom: 0"> {{ movie_data.movie_metacritic_rating }}</p></li>
+                           </ul>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            <p>
+                
+            </p>
             </div>
             {% endfor %}
         </div>

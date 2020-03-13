@@ -16,7 +16,8 @@
             <div class="cover-container d-flex w-100 h-17 p-3 mx-auto flex-column">
                 <header class="masthead mb-auto">
                     <div class="inner">
-                        <h3 class="masthead-brand">Extendflix</h3>
+                        {% load static %}
+                        <img src="{% static 'extendflix/img/bebas-neue.png' %}" height="35px" vspace="2" class="masthead-brand">
                         <nav class="nav nav-masthead justify-content-center">
                         <a class="nav-link active" href="/">Home</a>
                         {% if user.is_authenticated %}

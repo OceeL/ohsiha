@@ -17,8 +17,8 @@ def index(request):
 
     for movie in movies:
         movie_data = {
-            'movie_name' : movie.movie_name,
-            'movie_image' : movie.image,
+            'movie_name': movie.movie_name,
+            'movie_image': movie.image,
             'movie_released': movie.released,
             'movie_runtime': movie.runtime,
             'movie_imdb_id': movie.imdb_id,
@@ -67,7 +67,7 @@ def update_movies():
     # uNoGs API-request
     url = "https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi"
 
-    querystring = {"q": "get:new4:US", "p": "1", "t": "ns", "st": "adv"}
+    querystring = {"q": "get:new7:US", "p": "1", "t": "ns", "st": "adv"}
 
     headers = {
         'x-rapidapi-host': "unogs-unogs-v1.p.rapidapi.com",
@@ -109,6 +109,7 @@ def update_movies():
             new_movie.save()
 
     except:
+        print("Something went wrong")
         return
 
 

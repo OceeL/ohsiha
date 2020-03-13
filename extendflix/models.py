@@ -7,7 +7,7 @@ from django.db import models
 
 class Movie(models.Model):
     movie_name = models.CharField(max_length=200)
-    image = models.URLField(max_length=250, blank='True')
+    image = models.URLField(max_length=300, blank='True')
     released = models.IntegerField(blank='True')
     runtime = models.CharField(max_length=8, blank='True')
     imdb_id = models.CharField(max_length=10, default='', blank='True')
