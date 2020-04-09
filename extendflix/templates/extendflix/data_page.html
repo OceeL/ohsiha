@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Movie stats</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+{% endblock %}
+
+{% block body %}
+    <div class="jumbotron-fluid" style="margin-top: 40px">
+        <h3>Here you can see combined stats of the movie ratings</h3>
+    </div>
+    <div style="margin-bottom: 40px">
+    
+    </div>
+    <div>
+        <div class="row">
+            <div class="col-md-4">
+                <canvas id="imdb_chart" width="400" height="400"></canvas>
+                <script>
+                    var ctx = document.getElementById('imdb_chart');
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Rating 1', 'Rating 2', 'Rating 3', 'Rating 4', 'Rating 5', 'Rating 6', 'Rating 7',
+                                'Rating 8', 'Rating 9', 'Rating 10'],
+                            datasets: [{
+                                label: 'IMDB Ratings',
+                                data: {{ movies_data.imdb }},
+                                backgroundColor: [],
+                                borderColor: [
+                                    'rgb(255,248,42)',
+                                    'rgb(255,248,42)',
+                                    'rgb(255,248,42)',
+                                    'rgb(255,248,42)',
+                                    'rgb(255,248,42)',
+                                    'rgb(255,248,42)',
+                                    'rgb(255,248,42)',
+                                    'rgb(255,248,42)',
+                                    'rgb(255,248,42)',
+                                    'rgb(255,248,42)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                </script> -->
+            </div>
+            <div class="col-md-4">
+                <canvas id="rottentomate_chart" width="400" height="400"></canvas>
+                <script>
+                    var ctx = document.getElementById('rottentomate_chart');
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Rating 1', 'Rating 2', 'Rating 3', 'Rating 4', 'Rating 5', 'Rating 6', 'Rating 7',
+                                'Rating 8', 'Rating 9', 'Rating 10'],
+                            datasets: [{
+                                label: 'Rotten Tomato Ratings',
+                                data: {{ movies_data.rotten_tomato }},
+                                backgroundColor: [],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(255, 99, 132, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                </script> -->
+            </div>
+            <div class="col-md-4">
+                <canvas id="metacritic_chart" width="400" height="400"></canvas>
+                <script>
+                    var ctx = document.getElementById('metacritic_chart');
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Rating 1', 'Rating 2', 'Rating 3', 'Rating 4', 'Rating 5', 'Rating 6', 'Rating 7',
+                                'Rating 8', 'Rating 9', 'Rating 10'],
+                            datasets: [{
+                                label: 'Metacritic Ratings',
+                                data: {{ movies_data.metacritic }},
+                                backgroundColor: [],
+                                borderColor: [
+                                    'rgb(119,150,255)',
+                                    'rgb(119,150,255)',
+                                    'rgb(119,150,255)',
+                                    'rgb(119,150,255)',
+                                    'rgb(119,150,255)',
+                                    'rgb(119,150,255)',
+                                    'rgb(119,150,255)',
+                                    'rgb(119,150,255)',
+                                    'rgb(119,150,255)',
+                                    'rgb(119,150,255)',
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                </script> -->
+            </div>
+
+        </div>
+
+
+    </div>
+
+{% endblock %}

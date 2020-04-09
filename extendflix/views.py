@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
 import requests
+from operator import itemgetter
+from collections import Counter
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
@@ -32,6 +34,47 @@ def index(request):
 
     return render(request, 'extendflix/index.html', context)
 
+
+def data_page(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+
+    imbd_rating_ids = Movie.objects.exclude(imdb_rating="").values_list('imdb_rating')
+    rottentomato_rating_ids = Movie.objects.exclude(rotten_tomatoes_rating="").values_list('rotten_tomatoes_rating')
+    metacritic_rating_ids = Movie.objects.exclude(metacritic_rating="").values_list('metacritic_rating')
+
+
+    imdb_ratings = list(map(itemgetter(0), imbd_rating_ids))
+    imdb_ratings = [s.strip('/10') for s in imdb_ratings]
+    imdb_ratings = [int(float(x)) for x in imdb_ratings]
+    imdb_ratings = Counter(imdb_ratings)
+
+    rottentomato_ratings = list(map(itemgetter(0), rottentomato_rating_ids))
+    rottentomato_ratings = [s.strip('%') for s in rottentomato_ratings]
+    rottentomato_ratings = [int(float(x)/10) for x in rottentomato_ratings]
+    rottentomato_ratings = Counter(rottentomato_ratings)
+
+    metacritic_ratings = list(map(itemgetter(0), metacritic_rating_ids))
+    metacritic_ratings = [s.replace('/100','') for s in metacritic_ratings]
+    metacritic_ratings = [int(float(x)/10) for x in metacritic_ratings]
+    metacritic_ratings = Counter(metacritic_ratings)
+
+    ratings_list = [imdb_ratings, rottentomato_ratings, metacritic_ratings]
+
+    for n in range(0, 3):
+        labels = [0] * 10
+        for i in range(0, 9):
+            if ratings_list[n][i+1]:
+                labels[i] = ratings_list[n][i+1]
+
+        ratings_list[n] = labels
+    print(ratings_list)
+
+    ratings = {'imdb':ratings_list[0], 'rotten_tomato': ratings_list[1], 'metacritic':ratings_list[2]}
+
+    context = {'movies_data': ratings}
+
+    return render(request, 'extendflix/data_page.html', context)
 
 def get_ratings(imdbid):
 
